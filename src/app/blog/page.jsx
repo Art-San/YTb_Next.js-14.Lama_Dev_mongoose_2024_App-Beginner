@@ -1,25 +1,33 @@
 import PostCard from '@/components/postCard/PostCard'
 import styles from './blog.module.css'
+import { getPosts } from '@/lib/data'
 
-const getData = async () => {
-  const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
-    next: { revalidate: 3600 }
-  })
-  // const res = await fetch('https://jsonplaceholder.typicode.com/posts', { // подойдет если в бд данные часто меняются
-  //   cache: 'no-store'
-  // })
-  // const res = await fetch('https://jsonplaceholder.typicode.com/posts', { // подойдет если в бд данные не меняются
-  //   cache: 'force-cache'
-  // })
+// ПОЛУЧЕНИЕ ДАННЫХ С ПОМОЩЬЮ API
+// const getData = async () => {
+//   const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
+//     next: { revalidate: 3600 }
+//   })
+//   const res = await fetch('https://jsonplaceholder.typicode.com/posts', { // подойдет если в бд данные часто меняются
+//     cache: 'no-store'
+//   })
+//   const res = await fetch('https://jsonplaceholder.typicode.com/posts', { // подойдет если в бд данные не меняются
+//     cache: 'force-cache'
+//   })
 
-  if (!res.ok) {
-    throw new Error('Something went wrong')
-  }
+//   if (!res.ok) {
+//     throw new Error('Что-то пошло не так')
+//   }
 
-  return res.json()
-}
+//   return res.json()
+// }
 const BlogPage = async () => {
-  const posts = await getData()
+  // ПОЛУЧЕНИЕ ДАННЫХ С ПОМОЩЬЮ API
+  // const posts = await getData()
+
+  // ПОЛУЧЕНИЕ ДАННЫХ БЕЗ API
+  // const posts = await getPosts()
+
+  const posts = await getPosts()
 
   return (
     <div className={styles.container}>
