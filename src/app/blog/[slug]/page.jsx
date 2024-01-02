@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import styles from './singlePost.module.css'
-const SinglePostPage = () => {
+const SinglePostPage = ({ params }) => {
+  console.log('SinglePostPage params,', params)
   return (
     <div className={styles.container}>
       <div className={styles.imgContainer}>

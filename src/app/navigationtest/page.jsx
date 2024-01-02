@@ -1,20 +1,25 @@
 'use client'
 import Link from 'next/link'
-// import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 // 2:10:22
 const NavigationTestPage = () => {
   // CLIENT SIDE NAVIGATION
-  // const router = useRouter()
+  const router = useRouter()
   // const pathname = usePathname()
-  // const searchParams = useSearchParams()
+  const searchParams = useSearchParams()
 
-  // const q = searchParams.get('q')
+  const ifSo = searchParams.get('ifSo')
 
-  // console.log('q', q)
-
+  console.log('ifSo', ifSo)
+  // console.log('pathname', pathname)
   const handleClick = () => {
     console.log('clicked')
-    // router.forward()
+    // router.refresh() // обновляет страницу
+    // router.replace('/') // replace без записи в историю браузера, не получится вернуться
+
+    // router.push('/')
+    // router.back() // назад
+    router.forward() // вперед
   }
 
   return (
