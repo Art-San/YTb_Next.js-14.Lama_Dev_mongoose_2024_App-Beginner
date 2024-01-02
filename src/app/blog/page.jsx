@@ -1,11 +1,35 @@
 import PostCard from '@/components/postCard/PostCard'
 import styles from './blog.module.css'
-const BlogPage = ({ params, searchParams }) => {
-  // console.log('BlogPage params,', params)
-  console.log('BlogPage searchParams ,', searchParams)
+
+const getData = async () => {
+  const res = await fetch('https://jsonplaceholder.typicode.com/posts', {
+    next: { revalidate: 3600 }
+  })
+  // const res = await fetch('https://jsonplaceholder.typicode.com/posts', { // подойдет если в бд данные часто меняются
+  //   cache: 'no-store'
+  // })
+  // const res = await fetch('https://jsonplaceholder.typicode.com/posts', { // подойдет если в бд данные не меняются
+  //   cache: 'force-cache'
+  // })
+
+  if (!res.ok) {
+    throw new Error('Something went wrong')
+  }
+
+  return res.json()
+}
+const BlogPage = async () => {
+  const posts = await getData()
+
   return (
     <div className={styles.container}>
-      <div className={styles.post}>
+      {posts.map((post) => (
+        <div className={styles.post} key={post.id}>
+          <PostCard post={post} />
+        </div>
+      ))}
+
+      {/* <div className={styles.post}>
         <PostCard />
       </div>
       <div className={styles.post}>
@@ -19,7 +43,7 @@ const BlogPage = ({ params, searchParams }) => {
       </div>
       <div className={styles.post}>
         <PostCard />
-      </div>
+      </div> */}
     </div>
   )
 }
