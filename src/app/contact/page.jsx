@@ -1,4 +1,4 @@
-'use client' //для первого и третьего варианта вкл
+// 'use client' //для первого и третьего варианта вкл
 import Image from 'next/image'
 import styles from './contact.module.css'
 // import { useEffect, useState } from 'react'
@@ -24,9 +24,9 @@ const ContactPage = () => {
   // console.log(a)
 
   // третий вариант
-  const a = Math.random()
+  // const a = Math.random()
 
-  console.log(a)
+  // console.log(a)
 
   return (
     <div className={styles.container}>
@@ -36,7 +36,7 @@ const ContactPage = () => {
       <div className={styles.formContainer}>
         {/* {isClient && a} */}
         {/* <HydrationTestNoSSR /> */}
-        <div suppressHydrationWarning>{a}</div>
+        {/* <div suppressHydrationWarning>{a}</div> */}
         <form action="" className={styles.form}>
           <input type="text" placeholder="Name and Surname" />
           <input type="text" placeholder="Email Address" />
