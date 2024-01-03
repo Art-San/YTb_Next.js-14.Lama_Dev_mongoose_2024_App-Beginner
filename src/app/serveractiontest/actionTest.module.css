@@ -1,0 +1,48 @@
+.container {
+  margin-top: 100px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  justify-content: space-evenly;
+}
+
+.container form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form input,
+.form textarea {
+  padding: 20px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  background-color: var(--bgSoft);
+  color: var(--text);
+}
+
+.form button {
+  padding: 20px;
+  background-color: var(--btn);
+  color: var(--text);
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* .texts {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+} */
+
+/* .title {
+  color: gray;
+  font-weight: bold;
+} */
+
+/* .username {
+  font-weight: 500;
+} */

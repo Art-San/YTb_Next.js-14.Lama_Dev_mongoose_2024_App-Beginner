@@ -1,17 +1,21 @@
-import { addPost, deletePost, seyHello } from '@/lib/action'
+'use client'
+import { addPost, deletePost } from '@/lib/action'
+import styles from './actionTest.module.css'
+// import { addPost, deletePost, seyHello } from '@/lib/action'
 
 const ServerActionTestPage = () => {
-  const actionInComponent = async () => {
-    'use server'
-    console.log('it works!')
-  }
+  // const actionInComponent = async () => {
+  //   'use server'
+  //   console.log('it works!')
+  // }
 
   return (
-    <div>
-      <form action={actionInComponent}>
+    <div className={styles.container}>
+      <form action={addPost} className={styles.form}>
         <input type="text" placeholder="title" name="title" />
         <input type="text" placeholder="desc" name="desc" />
         <input type="text" placeholder="slug" name="slug" />
+        <input type="text" placeholder="ссылка" name="img" />
         <input type="text" placeholder="userId" name="userId" />
         <button>Create</button>
       </form>
