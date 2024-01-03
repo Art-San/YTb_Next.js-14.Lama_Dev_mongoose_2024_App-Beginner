@@ -20,14 +20,25 @@ import { getPosts } from '@/lib/data'
 
 //   return res.json()
 // }
+const getData = async () => {
+  const res = await fetch('http://localhost:3000/api/blog', {
+    next: { revalidate: 3600 }
+  })
+
+  if (!res.ok) {
+    throw new Error('Что-то пошло не так')
+  }
+
+  return res.json()
+}
 const BlogPage = async () => {
   // ПОЛУЧЕНИЕ ДАННЫХ С ПОМОЩЬЮ API
-  // const posts = await getData()
+  const posts = await getData()
 
   // ПОЛУЧЕНИЕ ДАННЫХ БЕЗ API
   // const posts = await getPosts()
 
-  const posts = await getPosts()
+  // const posts = await getPosts()
 
   return (
     <div className={styles.container}>
