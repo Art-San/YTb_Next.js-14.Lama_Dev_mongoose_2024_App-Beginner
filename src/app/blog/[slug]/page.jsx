@@ -34,7 +34,7 @@ const SinglePostPage = async ({ params }) => {
   // ПОЛУЧЕНИЕ ДАННЫХ БЕЗ API
 
   const post = await getPost(slug)
-  console.log('post.createdAt', post.createdAt)
+
   return (
     <div className={styles.container}>
       {/* {post.img && (
