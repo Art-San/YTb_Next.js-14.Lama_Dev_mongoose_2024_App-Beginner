@@ -9,10 +9,10 @@ import styles from './contact.module.css'
 //   ssr: false
 // })
 
-// export const metadata = {
-//   title: 'Contact Page',
-//   description: 'Contact description'
-// }
+export const metadata = {
+  title: 'Contact Page',
+  description: 'Contact description'
+}
 // 2:05;10
 const ContactPage = () => {
   // первый вариант

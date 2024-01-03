@@ -1,4 +1,4 @@
-.container {
+/* .container {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -11,9 +11,9 @@
 
 .username {
   font-weight: 500;
-}
+} */
 
-/* .container {
+.container {
   display: flex;
   align-items: center;
   gap: 20px;
@@ -37,4 +37,4 @@
 
 .username {
   font-weight: 500;
-} */
+}

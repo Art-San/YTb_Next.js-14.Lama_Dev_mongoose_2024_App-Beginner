@@ -3,10 +3,15 @@ import styles from './postCard.module.css'
 import Link from 'next/link'
 
 const PostCard = ({ post }) => {
-  console.log('PostCard  post.id 2:52:03', post.id)
+  console.log('PostCard  post.slug 2:52:03', post.slug)
   return (
     <div className={styles.container}>
       <div className={styles.top}>
+        {/* {post.img && (
+          <div className={styles.imgContainer}>
+            <Image src={post.img} alt="" fill className={styles.img} />
+          </div>
+        )} */}
         <div className={styles.imgContainer}>
           <Image
             src={post.img || '/noavatar.png'}
@@ -21,7 +26,7 @@ const PostCard = ({ post }) => {
       <div className={styles.bottom}>
         <h1 className={styles.title}>{post?.title}</h1>
         <p className={styles.desc}>{post?.desc}</p>
-        <Link className={styles.link} href={`/blog/${post.id}`}>
+        <Link className={styles.link} href={`/blog/${post.slug}`}>
           READ MORE
         </Link>
       </div>
