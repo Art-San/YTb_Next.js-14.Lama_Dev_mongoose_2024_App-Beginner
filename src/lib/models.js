@@ -19,11 +19,16 @@ const userSchema = new mongoose.Schema(
       type: String
     },
     img: {
-      type: String
+      type: String,
+      default: '/noavatar.png'
     },
     isAdmin: {
       type: Boolean,
       default: false
+    },
+    cameFrom: {
+      type: String,
+      default: 'хз'
     }
   },
   { timestamps: true }

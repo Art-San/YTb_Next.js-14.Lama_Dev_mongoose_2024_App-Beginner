@@ -25,19 +25,21 @@ export const authConfig = {
       const isOnBlogPage = request.nextUrl?.pathname.startsWith('/blog')
       const isOnLoginPage = request.nextUrl?.pathname.startsWith('/login')
 
-      // ONLY ADMIN CAN REACH THE ADMIN DASHBOARD
+      // Только админ имеет доступ панели администратора
 
       if (isOnAdminPanel && !user?.isAdmin) {
         return false
       }
 
       // ONLY AUTHENTICATED USERS CAN REACH THE BLOG PAGE
+      // только аутентифицированные пользователи МОГУТ ПОЛУЧИТЬ СТРАНИЦу блога
 
       if (isOnBlogPage && !user) {
         return false
       }
 
       // ONLY UNAUTHENTICATED USERS CAN REACH THE LOGIN PAGE
+      // ТОЛЬКО НЕ АУТЕНТИФИЦИРОВАННЫЕ ПОЛЬЗОВАТЕЛИ МОГУТ достигнуть НА СТРАНИЦУ ВХОДА
 
       if (isOnLoginPage && user) {
         return Response.redirect(new URL('/', request.nextUrl))
