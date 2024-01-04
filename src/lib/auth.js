@@ -1,5 +1,7 @@
 import NextAuth from 'next-auth'
 import GitHub from 'next-auth/providers/github'
+import { connectToDb } from './utils'
+import { User } from './models'
 export const {
   handlers: { GET, POST },
   auth,
@@ -11,7 +13,33 @@ export const {
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET
     })
-  ]
+  ],
+  callbacks: {
+    async signIn({ user, account, profile }) {
+      // console.log('user', user) // undefined
+      // console.log('account', account) // данные с гит
+      // console.log('profile', profile) // данные с гит профиля
+      if (account.provider === 'github') {
+        connectToDb()
+        try {
+          const user = await User.findOne({ email: profile.email })
+          if (!user) {
+            const newUser = new User({
+              username: profile.login,
+              email: profile.email,
+              image: profile.avatar_url
+            })
+
+            await newUser.save()
+          }
+        } catch (err) {
+          console.log(err)
+          return false
+        }
+      }
+      return true
+    }
+  }
 })
 
 // import NextAuth from 'next-auth'
