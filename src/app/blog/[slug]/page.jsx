@@ -2,7 +2,7 @@ import Image from 'next/image'
 import styles from './singlePost.module.css'
 import PostUser from '@/components/postUser/postUser'
 import { Suspense } from 'react'
-import { getPost } from '@/lib/data'
+import { getPost } from '@/lib/data' // два варианта
 
 // ПОЛУЧЕНИЕ ДАННЫХ С ПОМОЩЬЮ API
 // const getData = async (slug) => {
@@ -14,10 +14,28 @@ import { getPost } from '@/lib/data'
 //   return res.json()
 // }
 
+// const getData = async (slug) => {
+//   const res = await fetch(`http://localhost:3000/api/blog/${slug}`, {method: "DELETE"})
+//   if (!res.ok) {
+//     throw new Error('Something went wrong')
+//   }
+
+//   return res.json()
+// }
+const getData = async (slug) => {
+  const res = await fetch(`http://localhost:3000/api/blog/${slug}`)
+  if (!res.ok) {
+    throw new Error('Something went wrong')
+  }
+
+  return res.json()
+}
+
 export const generateMetadata = async ({ params }) => {
   const { slug } = params
 
-  const post = await getPost(slug)
+  const post = await getData(slug)
+  // const post = await getPost(slug) // два варианта из lib/data
 
   return {
     title: post.title,
@@ -29,12 +47,12 @@ const SinglePostPage = async ({ params }) => {
   const { slug } = params
 
   // ПОЛУЧЕНИЕ ДАННЫХ С ПОМОЩЬЮ API
-  // const post = await getData(slug)
+  const post = await getData(slug)
 
   // ПОЛУЧЕНИЕ ДАННЫХ БЕЗ API
 
-  const post = await getPost(slug)
-  // console.log('post', post)
+  // const post = await getPost(slug) // два варианта из lib/data
+  // console.log('post.createdAt', Date(post.createdAt))
 
   return (
     <div className={styles.container}>
@@ -74,7 +92,7 @@ const SinglePostPage = async ({ params }) => {
           <div className={styles.detailText}>
             <span className={styles.detailTitle}>Published</span>
             <span className={styles.detailValue}>
-              {post.createdAt.toString().slice(4, 16)}
+              {Date(post.createdAt).toString().slice(4, 16)}
             </span>
           </div>
         </div>
