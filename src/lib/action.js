@@ -54,42 +54,42 @@ export const deletePost = async (formData) => {
   }
 }
 
-// export const addUser = async (prevState, formData) => {
-//   const { username, email, password, img } = Object.fromEntries(formData)
+export const addUser = async (prevState, formData) => {
+  const { username, email, password, img } = Object.fromEntries(formData)
 
-//   try {
-//     connectToDb()
-//     const newUser = new User({
-//       username,
-//       email,
-//       password,
-//       img
-//     })
+  try {
+    connectToDb()
+    const newUser = new User({
+      username,
+      email,
+      password,
+      img
+    })
 
-//     await newUser.save()
-//     console.log('saved to db')
-//     revalidatePath('/admin')
-//   } catch (err) {
-//     console.log(err)
-//     return { error: 'Something went wrong!' }
-//   }
-// }
+    await newUser.save()
+    console.log('saved to db')
+    revalidatePath('/admin')
+  } catch (err) {
+    console.log(err)
+    return { error: 'Something went wrong!' }
+  }
+}
 
-// export const deleteUser = async (formData) => {
-//   const { id } = Object.fromEntries(formData)
+export const deleteUser = async (formData) => {
+  const { id } = Object.fromEntries(formData)
 
-//   try {
-//     connectToDb()
+  try {
+    connectToDb()
 
-//     await Post.deleteMany({ userId: id })
-//     await User.findByIdAndDelete(id)
-//     console.log('deleted from db')
-//     revalidatePath('/admin')
-//   } catch (err) {
-//     console.log(err)
-//     return { error: 'Something went wrong!' }
-//   }
-// }
+    await Post.deleteMany({ userId: id })
+    await User.findByIdAndDelete(id)
+    console.log('deleted from db')
+    revalidatePath('/admin')
+  } catch (err) {
+    console.log(err)
+    return { error: 'Something went wrong!' }
+  }
+}
 
 export const handleGithubLogin = async () => {
   'use server'
