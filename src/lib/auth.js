@@ -11,19 +11,20 @@ const login = async (credentials) => {
     connectToDb()
     const user = await User.findOne({ username: credentials.username })
 
-    if (!user) throw new Error('Wrong credentials!')
+    if (!user) throw new Error('login Неправильные учетные данные!')
 
     const isPasswordCorrect = await bcrypt.compare(
       credentials.password,
       user.password
     )
 
-    if (!isPasswordCorrect) throw new Error('Wrong credentials!')
+    if (!isPasswordCorrect)
+      throw new Error('login Неправильные учетные данные!')
 
     return user
   } catch (err) {
-    console.log(err)
-    throw new Error('Failed to login!')
+    // console.log('login! Не удалось войти!', err)
+    throw new Error('login! Не удалось войти!')
   }
 }
 
@@ -40,10 +41,13 @@ export const {
     }),
     CredentialsProvider({
       async authorize(credentials) {
+        console.log('auth CredentialsProvider credentials', credentials)
         try {
           const user = await login(credentials)
+          console.log('auth CredentialsProvider user', user)
           return user
         } catch (err) {
+          console.log('auth CredentialsProvider user'.err)
           return null
         }
       }

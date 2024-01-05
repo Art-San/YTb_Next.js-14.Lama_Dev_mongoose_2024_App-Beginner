@@ -101,11 +101,14 @@ export const handleLogOut = async () => {
   await signOut()
 }
 
-export const register = async (formData) => {
-  const { username, email, password, img, passwordRepeat } =
+export const register = async (prevState, formData) => {
+  const { username, email, password, passwordRepeat } =
     Object.fromEntries(formData)
 
+  console.log('formData', username, email, password, passwordRepeat)
+
   if (password !== passwordRepeat) {
+    // throw new Error('Пароли не совпадают')
     return { error: 'Пароли не совпадают' }
   }
 
@@ -124,11 +127,10 @@ export const register = async (formData) => {
     const newUser = new User({
       username,
       email,
-      password: hashedPassword,
-      img
+      password: hashedPassword
     })
 
-    await newUser.save()
+    // await newUser.save()
     console.log('saved to db')
 
     return { success: true }
@@ -138,17 +140,15 @@ export const register = async (formData) => {
   }
 }
 
-export const login = async (formData) => {
+export const login = async (prevState, formData) => {
   const { username, password } = Object.fromEntries(formData)
 
   try {
     await signIn('credentials', { username, password })
   } catch (err) {
-    console.log(err)
-
-    if (err.message.includes('CredentialsSignin')) {
-      return { error: 'Invalid username or password' }
+    if (err.message === 'CredentialsSignin') {
+      return { error: 'Неправильное имя пользователя или пароль !!!' }
     }
-    throw err
+    throw err.message
   }
 }
