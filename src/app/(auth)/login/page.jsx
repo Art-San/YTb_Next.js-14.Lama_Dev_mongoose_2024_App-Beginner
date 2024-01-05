@@ -57,8 +57,17 @@
 import LoginForm from '@/components/loginForm/loginForm'
 import { handleGithubLogin } from '@/lib/action'
 import styles from './login.module.css'
+// import { auth } from '@/lib/auth'
+// import { useRouter } from 'next/navigation'
 
-const LoginPage = () => {
+const LoginPage = async () => {
+  // const router = useRouter()
+  // const session = await auth()
+
+  // console.log('LoginPage auth?.user.isAdmin', session?.user?.isAdmin)
+  // session?.user && router.push('/')
+  // auth?.user.isAdmin && router.push('/')
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>

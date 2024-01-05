@@ -149,6 +149,6 @@ export const login = async (prevState, formData) => {
     if (err.message === 'CredentialsSignin') {
       return { error: 'Неправильное имя пользователя или пароль !!!' }
     }
-    throw err.message
+    throw err
   }
 }
