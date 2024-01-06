@@ -23,6 +23,7 @@ export const authConfig = {
     },
     authorized({ auth, request }) {
       const user = auth?.user
+      console.log('authConfig user ', user)
       // console.log('auth.config authorized user', user)
       // console.log('auth.config authorized request?.nextUrl', request?.nextUrl)
       const isOnAdminPanel = request.nextUrl?.pathname.startsWith('/admin')
