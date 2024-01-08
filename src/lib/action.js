@@ -98,7 +98,8 @@ export const handleGithubLogin = async () => {
 
 export const handleLogOut = async () => {
   'use server'
-  await signOut()
+  await signOut({ redirectTo: '/' })
+  // await signOut() // так тоже можно
 }
 
 export const register = async (prevState, formData) => {
@@ -147,7 +148,7 @@ export const login = async (prevState, formData) => {
     await signIn('credentials', { username, password })
   } catch (err) {
     if (err.message === 'CredentialsSignin') {
-      return { error: 'Неправильное имя пользователя или пароль !!!' }
+      return { error: 'Неправильное имя или пароль !!!' }
     }
     throw err
   }

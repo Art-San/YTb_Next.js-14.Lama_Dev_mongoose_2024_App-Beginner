@@ -8,6 +8,7 @@ import { authConfig } from './auth.config'
 
 // 4:04:04
 const login = async (credentials) => {
+  console.log('authConfig.callbacks', authConfig.callbacks)
   try {
     connectToDb()
     const user = await User.findOne({ username: credentials.username })
