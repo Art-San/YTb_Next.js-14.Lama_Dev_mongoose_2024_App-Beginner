@@ -9,9 +9,14 @@ const nextConfig = {
       {
         protocol: 'https',
         hostname: 'avatarzo.ru'
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com'
       }
     ]
   }
 }
 
 module.exports = nextConfig
+// https://avatars.githubusercontent.com

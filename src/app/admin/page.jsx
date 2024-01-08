@@ -2,8 +2,8 @@ import { Suspense } from 'react'
 import styles from './admin.module.css'
 import AdminPosts from '@/components/adminPosts/AdminPosts'
 import AdminPostForm from '@/components/adminPostForm/AdminPostForm'
-// import AdminUsers from '@/components/adminUsers/AdminUsers'
-// import AdminUserForm from '@/components/adminUserForm/AdminUserForm'
+import AdminUsers from '@/components/adminUsers/AdminUsers'
+import AdminUserForm from '@/components/adminUserForm/AdminUserForm'
 import { auth } from '@/lib/auth'
 
 const AdminPage = async () => {
@@ -25,10 +25,12 @@ const AdminPage = async () => {
       <div className={styles.row}>
         <div className={styles.col}>
           <Suspense fallback={<div>Loading...</div>}>
-            {/* <AdminUsers /> */}
+            <AdminUsers />
           </Suspense>
         </div>
-        <div className={styles.col}>{/* <AdminUserForm /> */}</div>
+        <div className={styles.col}>
+          <AdminUserForm />
+        </div>
       </div>
     </div>
   )
