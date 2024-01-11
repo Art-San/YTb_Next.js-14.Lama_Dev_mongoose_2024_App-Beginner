@@ -10,11 +10,11 @@ import bcrypt from 'bcryptjs'
 //   console.log('seyHello')
 // }
 
-export const addPost = async (formData) => {
-  // const title = formData.get("title");
-  // const desc = formData.get("desc");
-  // const slug = formData.get("slug");
-  console.log('formData', formData)
+export const addPost = async (prevState, formData) => {
+  // const title = formData.get('title')
+  // const desc = formData.get('desc')
+  // const slug = formData.get('slug')
+  // console.log('formData', title, desc, slug)
 
   const { title, desc, slug, img, userId } = Object.fromEntries(formData)
 
@@ -28,6 +28,7 @@ export const addPost = async (formData) => {
       userId
     })
 
+    console.log('action addPost newPost', newPost)
     await newPost.save()
     console.log('saved to db')
     revalidatePath('/blog') // обновит данные
@@ -131,7 +132,7 @@ export const register = async (prevState, formData) => {
       password: hashedPassword
     })
 
-    // await newUser.save()
+    await newUser.save()
     console.log('saved to db')
 
     return { success: true }
