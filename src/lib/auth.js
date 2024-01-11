@@ -8,25 +8,24 @@ import { authConfig } from './auth.config'
 
 // 4:04:04
 const login = async (credentials) => {
-  console.log('authConfig.callbacks', authConfig.callbacks)
+  // console.log('authConfig.callbacks', authConfig.callbacks)
   try {
     connectToDb()
     const user = await User.findOne({ username: credentials.username })
 
-    if (!user) throw new Error('login Неправильные учетные данные!')
+    if (!user) throw new Error('Неправильное имя!')
 
     const isPasswordCorrect = await bcrypt.compare(
       credentials.password,
       user.password
     )
 
-    if (!isPasswordCorrect)
-      throw new Error('login Неправильные учетные данные!')
+    if (!isPasswordCorrect) throw new Error('Неправильные пароль!')
 
     return user
   } catch (err) {
     // console.log('login! Не удалось войти!', err)
-    throw new Error('login! Не удалось войти!')
+    throw new Error(err)
   }
 }
 
