@@ -34,7 +34,7 @@
 
 // export default LoginPage
 import LoginForm from '@/components/loginForm/loginForm'
-import { handleGithubLogin } from '@/lib/action'
+import { handleGithubLogin, handleGoogleLogin } from '@/lib/action'
 import styles from './login.module.css'
 // import { auth } from '@/lib/auth'
 // import { useRouter } from 'next/navigation'
@@ -43,13 +43,12 @@ const LoginPage = async () => {
   // const router = useRouter()
   // const session = await auth()
 
-  // console.log('LoginPage auth?.user.isAdmin', session?.user?.isAdmin)
-  // session?.user && router.push('/')
-  // auth?.user.isAdmin && router.push('/')
-
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
+        <form action={handleGoogleLogin}>
+          <button className={styles.google}>Login with Google</button>
+        </form>
         <form action={handleGithubLogin}>
           <button className={styles.github}>Login with Github</button>
         </form>

@@ -1,5 +1,6 @@
 import NextAuth from 'next-auth'
 import GitHub from 'next-auth/providers/github'
+import Goggle from 'next-auth/providers/google'
 import CredentialsProvider from 'next-auth/providers/credentials'
 import { connectToDb } from './utils'
 import { User } from './models'
@@ -40,6 +41,10 @@ export const {
     GitHub({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET
+    }),
+    Goggle({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_SECRET
     }),
     CredentialsProvider({
       async authorize(credentials) {
